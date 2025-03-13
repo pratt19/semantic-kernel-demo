@@ -19,14 +19,39 @@ This project demonstrates the integration of Microsoft's Semantic Kernel with Sp
 
 ## Configuration
 
-The application uses the following configuration in `application.properties`:
+1. Create a `application.properties` file in `src/main/resources/` with the following structure:
 
 ```properties
 # OpenAI Configuration
-client-openai-key=dial-axqsgux6v4o5sjkcpdx0yz12dbx
+client-openai-key=your_api_key_here
 client-openai-endpoint=https://ai-proxy.lab.epam.com
 client-openai-deployment-name=gpt-3.5-turbo
-client-openai-key-id=EPM-AIED-Prateek_Shukla_Java_Course_March_4_2025
+client-openai-key-id=your_key_id_here
+
+# Server Configuration
+server.port=8080
+server.servlet.context-path=/api
+
+# Logging Configuration
+logging.level.root=INFO
+logging.level.com.example.semantickerneldemo=DEBUG
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+
+# Actuator Configuration
+management.endpoints.web.exposure.include=health,info,metrics
+management.endpoint.health.show-details=always
+
+# Swagger Configuration
+springdoc.api-docs.path=/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+springdoc.swagger-ui.operationsSorter=method
+springdoc.swagger-ui.tagsSorter=alpha
+```
+
+2. For security, you can also use environment variables:
+```bash
+export CLIENT_OPENAI_KEY=your_api_key_here
+export CLIENT_OPENAI_KEY_ID=your_key_id_here
 ```
 
 ## Building the Application
@@ -113,6 +138,12 @@ src/
 - SpringDoc OpenAPI 2.3.0
 - Lombok
 - Spring Boot Test
+
+## Security Notes
+
+- Never commit API keys or sensitive credentials to version control
+- Use environment variables or secure configuration management for sensitive data
+- Consider using a secrets management service in production environments
 
 ## Contributing
 
