@@ -1,77 +1,127 @@
 # Spring Boot Semantic Kernel Demo
 
-This project demonstrates the integration of Microsoft's Semantic Kernel with Spring Boot for AI-powered chat functionality.
+This project demonstrates the integration of Microsoft's Semantic Kernel with Spring Boot to create an AI-powered chat application.
 
 ## Prerequisites
 
-- Java 17 or later
-- Maven 3.6 or later
-- OpenAI API key
-- Azure OpenAI API key (optional)
+- Java 21 or later
+- Maven 3.8 or later
+- OpenAI API Key and Key ID (for DIAL integration)
+
+## Features
+
+- Integration with Microsoft Semantic Kernel
+- RESTful API endpoints for chat functionality
+- OpenAPI documentation with Swagger UI
+- Actuator endpoints for monitoring
+- Comprehensive test coverage
+- Error handling and validation
 
 ## Configuration
 
-1. Set up your environment variables:
+The application uses the following configuration in `application.properties`:
 
-```bash
-export OPENAI_API_KEY=your_openai_api_key
-export AZURE_OPENAI_API_KEY=your_azure_openai_api_key
-export AZURE_OPENAI_ENDPOINT=your_azure_openai_endpoint
+```properties
+# OpenAI Configuration
+client-openai-key=dial-axqsgux6v4o5sjkcpdx0yz12dbx
+client-openai-endpoint=https://ai-proxy.lab.epam.com
+client-openai-deployment-name=gpt-3.5-turbo
+client-openai-key-id=EPM-AIED-Prateek_Shukla_Java_Course_March_4_2025
 ```
-
-2. Configure the application properties in `src/main/resources/application.properties`
-
-The application uses the following API endpoint:
-- OpenAI API Endpoint: https://ai-proxy.lab.epam.com
 
 ## Building the Application
 
+1. Clone the repository:
+```bash
+git clone https://github.com/pratt19/semantic-kernel-demo.git
+cd semantic-kernel-demo
+```
+
+2. Build the project:
 ```bash
 mvn clean install
 ```
 
 ## Running the Application
 
+1. Start the application:
 ```bash
-mvn spring:boot run
+mvn spring-boot:run
 ```
 
-## API Usage
+2. The application will be available at:
+   - Main API: http://localhost:8080/api
+   - Swagger UI: http://localhost:8080/api/swagger-ui.html
+   - Actuator: http://localhost:8080/api/actuator
 
-Send a POST request to `/api/chat` with the following JSON body:
+## API Endpoints
 
+### Chat Endpoint
+
+- **URL**: `/api/chat`
+- **Method**: POST
+- **Request Body**:
 ```json
 {
-    "input": "I want to find top-10 books about world history"
+    "message": "Your message here"
 }
 ```
-
-The response will be in the following format:
-
+- **Response**:
 ```json
 {
-    "input": "I want to find top-10 books about world history",
-    "response": "Generated response from the AI model"
+    "response": "AI generated response"
 }
 ```
-
-## Features
-
-- Integration with OpenAI's GPT models through EPAM AI Proxy
-- Support for Azure OpenAI (optional)
-- RESTful API endpoint for chat functionality
-- Semantic Kernel integration for enhanced AI capabilities
 
 ## Testing
 
 Run the tests using:
-
 ```bash
 mvn test
 ```
 
-## API Endpoints
+## Project Structure
 
-- Chat API: `https://ai-proxy.lab.epam.com/api/chat`
-- Swagger UI: `https://ai-proxy.lab.epam.com/api/swagger-ui.html`
-- API Documentation: `https://ai-proxy.lab.epam.com/api/api-docs` 
+```
+src/
+├── main/
+│   ├── java/
+│   │   └── com/
+│   │       └── example/
+│   │           └── semantickerneldemo/
+│   │               ├── config/
+│   │               ├── controller/
+│   │               ├── model/
+│   │               ├── service/
+│   │               └── SemanticKernelDemoApplication.java
+│   └── resources/
+│       └── application.properties
+└── test/
+    └── java/
+        └── com/
+            └── example/
+                └── semantickerneldemo/
+                    ├── controller/
+                    ├── service/
+                    └── integration/
+```
+
+## Dependencies
+
+- Spring Boot 3.2.3
+- Semantic Kernel 0.4.7
+- SpringDoc OpenAPI 2.3.0
+- Lombok
+- Spring Boot Test
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
