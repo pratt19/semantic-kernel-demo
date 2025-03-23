@@ -15,12 +15,13 @@
     <artifactId>semantic-kernel-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>semantic-kernel-demo</name>
-    <description>Spring Boot Semantic Kernel Demo</description>
+    <description>Spring Boot Semantic Kernel Demo with Enhanced Features</description>
     
     <properties>
         <java.version>21</java.version>
-        <semantic-kernel.version>0.4.7</semantic-kernel.version>
+        <semantic-kernel.version>1.2.0</semantic-kernel.version>
         <springdoc.version>2.3.0</springdoc.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
     </properties>
     
     <dependencies>
@@ -64,6 +65,13 @@
             <optional>true</optional>
         </dependency>
         
+        <!-- MapStruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,6 +92,24 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
